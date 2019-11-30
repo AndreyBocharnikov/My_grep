@@ -18,7 +18,7 @@
     <item row="5" column="1">
      <widget class="QLineEdit" name="lineEdit">
       <property name="text">
-       <string>/home/andreybocharnikov/Qt/qt-proj/test main</string>
+       <string>/home/andreybocharnikov/Qt/qt-proj/test</string>
       </property>
      </widget>
     </item>
@@ -42,20 +42,6 @@
      <widget class="QPushButton" name="pushButton">
       <property name="text">
        <string>grep</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="0" colspan="2">
-     <widget class="QListWidget" name="listWidget">
-      <property name="resizeMode">
-       <enum>QListView::Fixed</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="0" colspan="2">
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="text">
-       <string>Write &quot;path target&quot; in the box below and press 'grep'. Target length should not be bigger than 8192</string>
       </property>
      </widget>
     </item>
@@ -98,15 +84,36 @@
       </property>
      </spacer>
     </item>
-    <item row="11" column="0" colspan="2">
+    <item row="5" column="2">
+     <widget class="QLineEdit" name="lineEdit_3">
+      <property name="text">
+       <string>main</string>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="0" colspan="3">
+     <widget class="QListWidget" name="listWidget">
+      <property name="resizeMode">
+       <enum>QListView::Fixed</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="0" rowspan="2" colspan="3">
+     <widget class="QListWidget" name="listWidget_2"/>
+    </item>
+    <item row="11" column="0" colspan="3">
      <widget class="QProgressBar" name="progressBar">
       <property name="value">
        <number>100</number>
       </property>
      </widget>
     </item>
-    <item row="7" column="0" rowspan="2" colspan="2">
-     <widget class="QListWidget" name="listWidget_2"/>
+    <item row="2" column="0" colspan="3">
+     <widget class="QLineEdit" name="lineEdit_2">
+      <property name="text">
+       <string>Write &quot;path target&quot; in the box below and press 'grep'. Target length should not be bigger than 8192</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>

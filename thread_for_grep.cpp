@@ -68,7 +68,7 @@ thread_for_grep::~thread_for_grep()
     thread.join();
 }
 
-void thread_for_grep::set_grep(QString const& str, bool warnings)
+void thread_for_grep::set_grep(QString const& path, QString const& grep_string, bool warnings)
 {
     std::unique_lock<std::mutex> lg(m);
     disable_warnings = warnings;
@@ -79,17 +79,17 @@ void thread_for_grep::set_grep(QString const& str, bool warnings)
     if (string_to_grep != "")
         cancel.store(true);
 
-    QStringList input = str.split(' ');
-    if (input[0][0] == '~') {
-        input[0] = QDir::homePath() + input[0].mid(1);
+    if (path[0] == '~') {
+        start_path = QDir::homePath() + path.mid(1);
+    } else {
+        start_path = path;
     }
-    if (input.length() == 1) {
+    if (grep_string.length() == 0) {
         warning_or_errors.push_back("String to grep should not be empty");
         warning_or_error_callback();
         return;
     }
-    string_to_grep = input[1];
-    start_path = input[0];
+    string_to_grep = grep_string;
     if (uint32_t(string_to_grep.length()) > 2 * hesh::BUFFER_SIZE) {
         warning_or_errors.push_back("String to grep is to big, it should be less than 8192");
         warning_or_error_callback();

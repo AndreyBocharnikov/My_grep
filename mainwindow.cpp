@@ -19,17 +19,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->progressBar->setValue(0);
     ui->lineEdit_2->setReadOnly(true);
-    QPalette *palette = new QPalette(); // не привязывается к родителю как таймер, то есть delete нужен
+    QPalette *palette = new QPalette();
     palette->setColor(QPalette::Base,Qt::black);
     palette->setColor(QPalette::Text,Qt::white);
     ui->lineEdit_2->setPalette(*palette);
 
-    ui->listWidget_2->addItem("Erroes and warnings:");
+    ui->listWidget_2->addItem("Errors and warnings:");
     thread_for_grep::hesh::precalc(2 * thread_for_grep::hesh::BUFFER_SIZE);
     connect(ui->pushButton, &QPushButton::clicked, this, [this]
     {
         ui->progressBar->setValue(0);
-        thread_grep.set_grep(ui->lineEdit->text(), ui->checkBox->isChecked());
+        thread_grep.set_grep(ui->lineEdit->text(), ui->lineEdit_3->text(), ui->checkBox->isChecked());
     });
 
     connect(&thread_grep, &thread_for_grep::result_changed, this, [this]

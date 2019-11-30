@@ -46,7 +46,7 @@ public:
 
     ~thread_for_grep();
 
-    void set_grep(QString const& str, bool disable_warnings);
+    void set_grep(QString const& str, QString const&, bool disable_warnings);
     QString get_result(uint32_t) const;
     std::vector<QString> get_warnings() const;
 signals:
