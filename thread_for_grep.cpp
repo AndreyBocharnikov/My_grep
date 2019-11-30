@@ -34,7 +34,6 @@ thread_for_grep::thread_for_grep()
             });
             if (quit)
                 break;
-            // std::cout << "doen't sleep anymore " << string_to_grep.toUtf8().data() << std::endl;
             current_result.incomplete = true;
             current_result.targes.clear();
             warning_or_errors.clear();
@@ -251,19 +250,21 @@ void thread_for_grep::hesh::precalc(int target_length) {
 }
 
 std::vector<uint32_t> thread_for_grep::hesh::compute_hash(const QString &input) {
-    int length = input.length();
+    auto str = input.toUtf8();
+    int length = str.length();
     std::vector <uint32_t> result(length);
-    result[0] = input.toUtf8().at(0) - min_char + 1;
+    result[0] = str[0] - min_char + 1;
     for (int i = 1; i < length; i++) {
-        result[i] = add(result[i - 1], multy(input.toUtf8().at(i) - min_char + 1, pows[i]));
+        result[i] = add(result[i - 1], multy(str[i] - min_char + 1, pows[i]));
     }
     return result;
 }
 
 uint32_t thread_for_grep::hesh::compute_hash_word(const QString &input) {
     uint32_t result = 0;
-    for (int i = 0; i < input.length(); i++) {
-        result = add(result, multy(input.toUtf8()[i] - min_char + 1, pows[i]));
+    auto str = input.toUtf8();
+    for (int i = 0; i < str.length(); i++) {
+        result = add(result, multy(str[i] - min_char + 1, pows[i]));
     }
     return result;
 }
